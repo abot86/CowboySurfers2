@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class moveChar : MonoBehaviour {
@@ -10,6 +11,8 @@ public class moveChar : MonoBehaviour {
     public float horizVel = 0;
     public int laneNum = 2;
     public bool controlLocked = false;
+
+    public Transform boomObj;
 
 	// Use this for initialization
 	void Start () {
@@ -39,9 +42,14 @@ public class moveChar : MonoBehaviour {
 
     private void OnCollisionEnter(Collision other)
     {
+        
         if (other.gameObject.tag == "lethal")
         {
+
             Destroy(gameObject);
+            GM.zVelAdj = 0;
+            Instantiate(boomObj, transform.position, boomObj.rotation);
+            GM.lvlCompStatus = "fail";
         }
     }
 
@@ -55,6 +63,16 @@ public class moveChar : MonoBehaviour {
         {
             GM.vertVel = 0;
         }
+        if (other.gameObject.name == "exit")
+        {
+            SceneManager.LoadScene("LevelComplete");
+        }
+        if (other.gameObject.name == "waterBottle")
+        {
+            Destroy(other.gameObject);
+            GM.coinTotal++;
+        }
+        
     }
 
     IEnumerator stopSlide()
