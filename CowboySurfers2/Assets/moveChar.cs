@@ -18,7 +18,7 @@ public class moveChar : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        GetComponent<Rigidbody>().velocity = new Vector3(horizVel, 0, 4);
+        GetComponent<Rigidbody>().velocity = new Vector3(horizVel, GM.vertVel, 4);
 
         if ((Input.GetKeyDown(moveL) && (laneNum > 1) && controlLocked == false))
         {
@@ -42,6 +42,18 @@ public class moveChar : MonoBehaviour {
         if (other.gameObject.tag == "lethal")
         {
             Destroy(gameObject);
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name == "rampBottomTrig")
+        {
+            GM.vertVel = 1;
+        }
+        if (other.gameObject.name == "rampTopTrig")
+        {
+            GM.vertVel = 0;
         }
     }
 
