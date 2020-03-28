@@ -14,14 +14,28 @@ public class GM : MonoBehaviour {
 
     public static string lvlCompStatus = "";
 
+    public Transform bbNoPit;
+    public Transform bbPitMid;
+
+    public float zScenePos = 72;
+
 	// Use this for initialization
 	void Start () {
-		
-	}
+
+        Instantiate(bbNoPit, new Vector3(0, 1.77f, 32), bbNoPit.rotation);
+        Instantiate(bbPitMid, new Vector3(0, 1.77f, 52), bbPitMid.rotation);
+
+        
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        
+        if (zScenePos < 120)
+        {
+            Instantiate(bbNoPit, new Vector3(0, 1.77f, zScenePos), bbNoPit.rotation);
+            zScenePos += 20;
+        }
+
         timeTotal += Time.deltaTime;
 		
         if (lvlCompStatus == "fail")
