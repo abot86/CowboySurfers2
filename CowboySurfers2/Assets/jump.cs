@@ -29,14 +29,15 @@ public class jump : MonoBehaviour
         }
 
         
-
+        
+        
+        
         
 
-        
-
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            Debug.Log("Spacebar");
         }
 
         velocity.y += gravity * Time.deltaTime;

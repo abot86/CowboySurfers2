@@ -17,13 +17,13 @@ public class GM : MonoBehaviour {
     public Transform bbNoPit;
     public Transform bbPitMid;
 
-    public float zScenePos = 72;
+    public float zScenePos = 60;
 
 	// Use this for initialization
 	void Start () {
 
-        Instantiate(bbNoPit, new Vector3(0, 1.77f, 32), bbNoPit.rotation);
-        Instantiate(bbPitMid, new Vector3(0, 1.77f, 52), bbPitMid.rotation);
+        Instantiate(bbNoPit, new Vector3(0, 0, 20), bbNoPit.rotation);
+        Instantiate(bbPitMid, new Vector3(0, 0, 40), bbPitMid.rotation);
 
         
     }
@@ -32,7 +32,7 @@ public class GM : MonoBehaviour {
 	void Update () {
         if (zScenePos < 120)
         {
-            Instantiate(bbNoPit, new Vector3(0, 1.77f, zScenePos), bbNoPit.rotation);
+            Instantiate(bbNoPit, new Vector3(0, 0, zScenePos), bbNoPit.rotation);
             zScenePos += 20;
         }
 
